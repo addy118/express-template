@@ -1,16 +1,27 @@
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
-const indexRouter = require("./routes/indexRouter");
+const { getApp, routeError, appError } = require("./controllers/appController");
+const { getRouter } = require("./controllers/routerController");
 
 const app = express();
 
+// set templates engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+// set public dir for serving static files
 app.use(express.static(path.join(__dirname, "public")));
+// parse form data
 app.use(express.urlencoded({ extended: true }));
+// parse json data
+app.use(express.json());
 
-app.use("/", indexRouter);
+// other routers
+app.use("/route", getRouter);
+app.use("/", getApp);
+
+app.use(routeError);
+app.use(appError);
 
 const { PORT } = process.env;
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
