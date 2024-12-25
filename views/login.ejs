@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/node.svg" />
+    <title>Home</title>
+    <link rel="stylesheet" href="/essentials.css" />
+    <link rel="stylesheet" href="/form.css" />
+  </head>
+  <body>
+    <% if (locals.user) { %>
+
+    <h1>WELCOME BACK <%= user.username %></h1>
+    <a href="/log-out"><button>LOG OUT</button></a>
+
+    <% } else { %>
+
+    <h1>Please Log In</h1>
+    <%- include('partials/errors.ejs') %>
+    <form action="/log-in" method="POST">
+      <fieldset>
+        <label for="username"
+          >Username:
+          <input type="text" name="username" id="username" />
+        </label>
+
+        <label for="password"
+          >Password:
+          <input type="password" name="password" id="password" />
+        </label>
+
+        <div class="buttons">
+          <button type="submit">Log In</button>
+          <a href="/sign-up"><button type="button">Sign Up</button></a>
+        </div>
+      </fieldset>
+    </form>
+
+    <% } %>
+  </body>
+</html>
