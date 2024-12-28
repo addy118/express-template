@@ -16,6 +16,13 @@ app.use(express.urlencoded({ extended: true }));
 // parse json data
 app.use(express.json());
 
+require("./config/passport");
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 // other routers
 app.use("/route", getRouter);
 app.use("/", getApp);

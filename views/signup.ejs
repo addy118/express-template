@@ -11,11 +11,21 @@
   <body>
     <h1><%= title %></h1>
     <%- include('partials/errors.ejs') %>
-    <form action="/sign-up" method="POST">
+    <form action="/signup" method="POST">
       <fieldset>
-        <label for="username"
-          >Username:
-          <input type="text" name="username" id="username" />
+        <label for="fname"
+          >First Name:
+          <input type="text" name="fname" id="fname" />
+        </label>
+
+        <label for="lname"
+          >Last Name:
+          <input type="text" name="lname" id="lname" />
+        </label>
+
+        <label for="email"
+          >Email:
+          <input type="text" name="email" id="email" />
         </label>
 
         <label for="password"
@@ -23,9 +33,11 @@
           <input type="password" name="password" id="password" />
         </label>
 
-        <button type="submit">Sign Up</button>
+        <div class="buttons">
+          <button type="submit">Sign Up</button>
+          <a href="/login"><button type="button">Log In</button></a>
+        </div>
       </fieldset>
     </form>
-    <a href="/"><button>Log In</button></a>
   </body>
 </html>

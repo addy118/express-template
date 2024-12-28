@@ -1,13 +1,4 @@
-const { body, validationResult } = require("express-validator");
-
-validateForm = [
-  body("name")
-    .trim()
-    .isAlpha()
-    .withMessage("Name should only contain letters!")
-    .isLength({ min: 2, max: 30 })
-    .withMessage("Name should be between 2 and 30 characters only!"),
-];
+const { validationResult } = require("express-validator");
 
 exports.getRouter = (req, res) => {
   res.send("router works!");
@@ -20,7 +11,7 @@ exports.postNewRouter = [
 
     // validation error
     const errors = validationResult(req);
-    if (!errors.notEmpty()) {
+    if (!errors.isEmpty()) {
       return res.status(400).render("view", {
         title: "New Router",
         errors: errors.array(),

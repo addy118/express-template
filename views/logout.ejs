@@ -9,12 +9,9 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <nav>
-      <a href="/logout"><button>Log Out</button></a>
-    </nav>
-    <h3>
-      Hello <%= currentUser %>! You've visited the great hall <%=
-      viewCount %> times!
-    </h3>
+    <h3>Are you sure you want to log out?</h3>
+    <form action="/logout" method="POST">
+      <button type="submit">Log Out</button>
+    </form>
   </body>
 </html>
